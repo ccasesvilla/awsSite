@@ -26,7 +26,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    bio = forms.CharField(widget=TinyMCEWidget(attrs={'required': False, 'cols': 30, 'rows': 2}))
     class Meta:
         model = Profile
         fields =  ['bio','first_name','last_name','status', 'interests','description','image']

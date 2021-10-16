@@ -13,15 +13,15 @@ STATUS = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, blank=True)
     last_name = models.CharField(max_length=20, blank = True)
     image = models.ImageField(default='default.png', upload_to='profile_pics')
     slug = AutoSlugField(populate_from = 'user')
     status = models.IntegerField(choices=STATUS, default=0)
-    bio = models.CharField(max_length=300, blank = True)
-    description = models.TextField(max_length=1000, blank = True)
-    interests = models.TextField(max_length=1000, blank = True)
-    friends = models.ManyToManyField("Profile", blank = True)
+    bio = models.TextField(max_length=300, blank=True)
+    description = models.TextField(max_length=1000, blank=True)
+    interests = models.TextField(max_length=1000, blank=True)
+    friends = models.ManyToManyField("Profile", blank=True)
     #fav_authors = models.ManyToManyField("Profile", blank = True)
 
 

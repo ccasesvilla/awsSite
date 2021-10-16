@@ -73,32 +73,34 @@
           
           <div class="card-footer bg-light pt-8 p-8 p-md-2 ">
             
-           
 
-            {% if button_status == 'not_friend' %}
-              <small>
-                <a class="btn btn-primary float-center" href="/users/friend-request/send/{{ u.id }}">Add Friend</a>
-                </small>
-              {% elif button_status == 'friend_request_sent' %}
-              <small>
-                <a class="btn btn-warning float-center" href="/users/friend-request/cancel/{{ u.id }}">Cancel Request</a>
-              </small>
-              {% elif button_status == 'friend_request_received' %}
-              <small>
-                <a class="btn btn-success float-center mr-2" href="/users/friend-request/accept/{{ u.id }}">Accept Request</a>
-              </small>
-              <small>
-                <a class="btn btn-danger float-center" href="/users/friend-request/delete/{{ u.id }}">Reject Request</a>
-              </small>
-              {% else %}
-              <small>
-                <a class="btn btn-danger float-center" href="/users/friend/delete/{{ u.id }}">UnFriend</a>
-              </small>
-              {% endif %}
-            <a href="{% url 'edit_profile' %}" style="border-width: 1px; margin: 2px;  float:right" class="btn btn-outline-primary" role="button" aria-pressed="true">Edit Profle</a>
-            <a href="/password_reset" style="border-width: 1px; margin: 2px; float:right" class="btn btn-outline-primary" role="button" aria-pressed="true">Change Password</a>  
-            {% if request.user == u %}
-            <a href="/base" style="border-width: 1px; margin: 2px; float:right" class="btn btn-outline-primary" role="button" aria-pressed="true">Comments</a>
+            {% if request.user == u %}              
+            <a href="{% url 'edit_profile' %}" style="float:right" class="btn btn-outline-primary" role="button" aria-pressed="true">Edit Profle</a>
+            <a href="/password_reset" style="float:right" class="btn btn-outline-primary" role="button" aria-pressed="true">Change Password</a>  
+
+            <a href="/base" class="btn btn-outline-primary" role="button" aria-pressed="true">Comments</a>
+            {% elif request.user != u %}
+            
+                {% if button_status == 'not_friend' %}
+                  <small>
+                    <a class="btn btn-primary float-center" href="/users/friend-request/send/{{ u.id }}">Add Friend</a>
+                    </small>
+                  {% elif button_status == 'friend_request_sent' %}
+                  <small>
+                    <a class="btn btn-warning float-center" href="/users/friend-request/cancel/{{ u.id }}">Cancel Request</a>
+                  </small>
+                  {% elif button_status == 'friend_request_received' %}
+                  <small>
+                    <a class="btn btn-success float-center mr-2" href="/users/friend-request/accept/{{ u.id }}">Accept Request</a>
+                  </small>
+                  <small>
+                    <a class="btn btn-danger float-center" href="/users/friend-request/delete/{{ u.id }}">Reject Request</a>
+                  </small>
+                  {% else %}
+                  <small>
+                    <a class="btn btn-danger float-center" href="/users/friend/delete/{{ u.id }}">UnFriend</a>
+                  </small>
+                  {% endif %}
             {% endif %}
         
 
